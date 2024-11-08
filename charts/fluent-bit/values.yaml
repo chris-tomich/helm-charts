@@ -98,13 +98,12 @@ service:
   # nodePort: 30020
   # clusterIP: 172.16.10.1
   annotations: {}
-#   prometheus.io/path: "/api/v1/metrics/prometheus"
-#   prometheus.io/port: "2020"
-#   prometheus.io/scrape: "true"
+  #   prometheus.io/path: "/api/v1/metrics/prometheus"
+  #   prometheus.io/port: "2020"
+  #   prometheus.io/scrape: "true"
   externalIPs: []
   # externalIPs:
   #  - 2.2.2.2
-
 
 serviceMonitor:
   enabled: false
@@ -407,19 +406,8 @@ config:
   ## https://docs.fluentbit.io/manual/pipeline/outputs
   outputs: |
     [OUTPUT]
-        Name es
-        Match kube.*
-        Host elasticsearch-master
-        Logstash_Format On
-        Retry_Limit False
-
-    [OUTPUT]
-        Name es
-        Match host.*
-        Host elasticsearch-master
-        Logstash_Format On
-        Logstash_Prefix node
-        Retry_Limit False
+        Name stdout
+        Match *
 
   ## https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/upstream-servers
   ## This configuration is deprecated, please use `extraFiles` instead.
